@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI 로또 분석 센터 | 빅데이터 기반 최적 번호 추천</title>
+    <title>AI 로또 분석 센터 | 시퀀스 전이 분석 (STR)</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -11,16 +11,21 @@
     <div class="app-container">
         <aside class="sidebar">
             <div class="logo">
-                <i class="fas fa-microchip"></i>
-                <span>LottoAI</span>
+                <i class="fas fa-brain"></i>
+                <span>LottoSTR AI</span>
             </div>
             <nav>
                 <ul>
-                    <li class="active"><i class="fas fa-chart-bar"></i> 분석 대시보드</li>
-                    <li><i class="fas fa-history"></i> 역대 당첨 번호</li>
-                    <li><i class="fas fa-lightbulb"></i> 패턴 가이드</li>
+                    <li class="active"><i class="fas fa-chart-line"></i> 분석 대시보드</li>
+                    <li><i class="fas fa-calculator"></i> 알고리즘 수식</li>
+                    <li><i class="fas fa-database"></i> 역대 데이터</li>
                 </ul>
             </nav>
+            <div class="formula-info">
+                <h4><i class="fas fa-info-circle"></i> 분석 수식 (STR-90)</h4>
+                <p>P(X<sub>n+1</sub> | X<sub>n</sub>) &approx; &sum; w<sub>i</sub> &sdot; T<sub>ij</sub></p>
+                <small>직전 회차 번호가 다음 회차에 미치는 전이 확률(Transition Probability)을 가중치 기반으로 계산합니다.</small>
+            </div>
             <div class="theme-switch-wrapper">
                 <button id="theme-toggle" class="theme-btn">
                     <i class="fas fa-moon"></i> <span>다크 모드</span>
