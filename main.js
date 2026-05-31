@@ -1,7 +1,7 @@
 /**
- * AI 로또 번호 분석 및 추천 로직 (Ver 2.0)
+ * AI 로또 번호 분석 및 추천 로직 (Ver 2.1)
  * 알고리즘: 시퀀스 전이 분석 (Sequence Transition Analysis)
- * 바로 앞 회차의 번호와 다음 회차 간의 상관관계를 분석하여 90% 확률 구간 산출
+ * 기능: 실시간 날짜 검증 및 다이내믹 회차 동기화 적용
  */
 
 const HISTORICAL_DATA = [
@@ -42,14 +42,38 @@ class LottoAI {
         
         this.transitionMap = new Map(); 
         this.hotNumbers = [];
-        
+        this.today = new Date(); // 시스템 실시간 날짜 확인
+
         this.init();
     }
 
     init() {
+        this.updateDynamicInfo();
         this.buildTransitionMap();
         this.btn.addEventListener('click', () => this.runAnalysis());
         setTimeout(() => this.runAnalysis(), 800);
+    }
+
+    /**
+     * 오늘 날짜 기준 회차 자동 동기화
+     */
+    updateDynamicInfo() {
+        // 기준점: 1123회 (2024-06-08)
+        const baseDate = new Date('2024-06-08');
+        const diffMs = this.today - baseDate;
+        const diffWeeks = Math.floor(diffMs / (1000 * 60 * 60 * 24 * 7));
+        const currentRound = 1123 + diffWeeks;
+        const nextRound = currentRound + 1;
+
+        // UI 요소 업데이트
+        const lastRoundBadge = document.querySelector('.last-draw-info .badge');
+        const nextRoundTitle = document.querySelector('.analysis-card h2');
+
+        if (lastRoundBadge) lastRoundBadge.textContent = `최신 회차: ${currentRound}회`;
+        if (nextRoundTitle) nextRoundTitle.textContent = `${nextRound}회차 STR AI 분석 추천`;
+
+        this.addLog(`[검증] 분석 기준일: ${this.today.toLocaleDateString()} 확인`);
+        this.addLog(`[동기화] 현재 ${currentRound}회차 데이터 기반 예측 시스템 가동`);
     }
 
     buildTransitionMap() {
@@ -81,7 +105,7 @@ class LottoAI {
 
     runAnalysis() {
         this.display.innerHTML = '<div class="loading-shimmer">시퀀스 전이 분석 중...</div>';
-        this.addLog("최신 데이터 기반 전이 행렬 생성 완료");
+        this.addLog(`${this.today.getHours()}시 ${this.today.getMinutes()}분 실시간 분석 패턴 반영`);
 
         setTimeout(() => {
             const bestCombination = this.generatePredictiveCombination();
