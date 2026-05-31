@@ -118,6 +118,40 @@ class LottoAI {
     }
 }
 
+class ThemeManager {
+    constructor() {
+        this.themeToggle = document.getElementById('theme-toggle');
+        this.themeIcon = this.themeToggle.querySelector('i');
+        this.themeText = this.themeToggle.querySelector('span');
+        this.currentTheme = localStorage.getItem('theme') || 'dark';
+        
+        this.init();
+    }
+
+    init() {
+        this.applyTheme(this.currentTheme);
+        this.themeToggle.addEventListener('click', () => this.toggle());
+    }
+
+    toggle() {
+        this.currentTheme = this.currentTheme === 'dark' ? 'light' : 'dark';
+        this.applyTheme(this.currentTheme);
+        localStorage.setItem('theme', this.currentTheme);
+    }
+
+    applyTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        if (theme === 'dark') {
+            this.themeIcon.className = 'fas fa-sun';
+            this.themeText.textContent = '라이트 모드';
+        } else {
+            this.themeIcon.className = 'fas fa-moon';
+            this.themeText.textContent = '다크 모드';
+        }
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     new LottoAI();
+    new ThemeManager();
 });

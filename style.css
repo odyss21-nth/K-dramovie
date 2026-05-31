@@ -2,10 +2,24 @@
     --primary-bg: #0f172a;
     --card-bg: #1e293b;
     --sidebar-bg: #1e293b;
-    --accent: #fbbf24; /* Gold */
+    --border-color: #334155;
+    --accent: #fbbf24;
     --text-main: #f8fafc;
     --text-muted: #94a3b8;
     --success: #22c55e;
+    --header-bg: #0f172a;
+}
+
+[data-theme="light"] {
+    --primary-bg: #f1f5f9;
+    --card-bg: #ffffff;
+    --sidebar-bg: #ffffff;
+    --border-color: #e2e8f0;
+    --accent: #d97706;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --success: #16a34a;
+    --header-bg: #f1f5f9;
 }
 
 * {
@@ -19,7 +33,34 @@ body {
     background-color: var(--primary-bg);
     color: var(--text-main);
     overflow: hidden;
+    transition: background-color 0.3s, color 0.3s;
 }
+/* ... rest of the file ... */
+.theme-switch-wrapper {
+    margin-top: auto;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.theme-btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    color: var(--text-main);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.2s;
+}
+
+.theme-btn:hover {
+    background: var(--border-color);
+}
+
 
 .app-container {
     display: flex;

@@ -1,23 +1,25 @@
-# K-Dramovie
+# AI 로또 분석 센터 (AI Lotto Analysis Center)
 
-A modern K-Drama and Movie discovery application built with Vanilla JavaScript and the TMDB API (Demo Mode).
+빅데이터와 패턴 분석 알고리즘을 활용한 대한민국 로또 6/45 번호 추천 시스템입니다.
 
-## Features
-- **Trending Feed**: Discover the latest popular K-Dramas and Movies.
-- **Search**: Real-time search functionality for titles and descriptions.
-- **Dark Mode**: Sleek Netflix-inspired UI for a premium viewing experience.
-- **Quick View**: Detailed information including ratings, release dates, and overviews.
+## 🚀 주요 기능 (Features)
+- **AI 최적 번호 생성**: 최근 당첨 내역(1121~1123회)을 바탕으로 홀짝 비율, 총합 범위, 빈출 번호 가중치를 계산하여 최적의 조합을 추천합니다.
+- **실시간 데이터 분석**: 
+    - 홀짝 밸런스 (Odd/Even Balance)
+    - 총합 범위 필터링 (Sum Range: 100~170)
+    - 고저 밸런스 (Low-High Balance)
+- **프리미엄 UI**: 다크 모드 기반의 세련된 대시보드 인터페이스.
 
-## Tech Stack
-- HTML5
-- CSS3 (Vanilla)
-- JavaScript (ES6+ Modules)
-- [Font Awesome](https://fontawesome.com/) for icons
+## 🛠 기술 스택 (Tech Stack)
+- **Frontend**: HTML5, CSS3, JavaScript (ES6+)
+- **Icons**: Font Awesome 6.0
+- **Fonts**: Pretendard / Google Fonts
 
-## How to Run
-Simply open `index.html` in your browser.
+## 📝 분석 알고리즘 (Algorithm)
+본 시스템은 다음과 같은 확률적 필터를 적용합니다:
+1. **홀짝 비율**: 2:4, 3:3, 4:2 비율 중 하나를 선택 (가장 높은 당첨 확률).
+2. **총합 필터**: 6개 번호의 합이 100에서 170 사이인 조합만 추출.
+3. **가중치 부여**: 최근 3회차 이내 당첨된 번호에 대해 약 20%의 출현 가중치를 부여.
 
-## Future Plans
-- [ ] Integration with real-time TMDB API.
-- [ ] User watchlists (Local Storage).
-- [ ] Trailer embedding.
+## ⚠️ 면책 조항 (Disclaimer)
+본 서비스는 통계적 데이터와 확률적 알고리즘을 기반으로 번호를 추천하지만, **실제 당첨을 보장하지 않습니다.** 로또는 확률 게임이며, 모든 선택의 책임은 사용자 본인에게 있습니다. 재미와 참고용으로만 활용해 주시기 바랍니다.
