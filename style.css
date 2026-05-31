@@ -1,10 +1,10 @@
 :root {
-    --bg-color: #141414;
-    --header-bg: rgba(20, 20, 20, 0.9);
-    --text-primary: #ffffff;
-    --text-secondary: #e5e5e5;
-    --accent: #e50914;
-    --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    --primary-color: #ffcc00; /* 로또 옐로우 */
+    --secondary-color: #2c3e50;
+    --accent-color: #e74c3c;
+    --bg-color: #f4f7f6;
+    --white: #ffffff;
+    --shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
 * {
@@ -14,260 +14,185 @@
 }
 
 body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
     background-color: var(--bg-color);
-    color: var(--text-primary);
-    line-height: 1.5;
-    overflow-x: hidden;
-}
-
-/* Header & Nav */
-header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 70px;
-    display: flex;
-    align-items: center;
-    padding: 0 4%;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.7) 10%, transparent);
-    z-index: 1000;
-    transition: background 0.3s ease;
-}
-
-header.scrolled {
-    background-color: var(--header-bg);
-}
-
-.logo {
-    color: var(--accent);
-    font-size: 1.8rem;
-    font-weight: bold;
-    margin-right: 40px;
-    cursor: pointer;
-}
-
-nav ul {
-    display: flex;
-    list-style: none;
-    gap: 20px;
-}
-
-nav ul li {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    cursor: pointer;
-    transition: color 0.3s;
-}
-
-nav ul li:hover, nav ul li.active {
-    color: var(--text-primary);
-}
-
-.search-container {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-    background: rgba(0,0,0,0.5);
-    border: 1px solid #ccc;
-    padding: 5px 10px;
-    border-radius: 4px;
-}
-
-.search-container input {
-    background: transparent;
-    border: none;
-    color: white;
-    margin-left: 8px;
-    outline: none;
-    width: 150px;
-}
-
-/* Hero Section */
-#hero {
-    height: 80vh;
-    background: linear-gradient(to right, rgba(20,20,20,0.8), transparent), url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&q=80&w=2000') center/cover;
-    display: flex;
-    align-items: center;
-    padding: 0 4%;
-}
-
-.hero-content {
-    max-width: 600px;
-}
-
-.hero-content h1 {
-    font-size: 3.5rem;
-    margin-bottom: 1rem;
-}
-
-.hero-content p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    color: var(--text-secondary);
-}
-
-#hero-play {
-    padding: 10px 25px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    background-color: white;
-    color: black;
-    transition: opacity 0.2s;
-}
-
-#hero-play:hover {
-    opacity: 0.8;
-}
-
-/* Content Section */
-.content-section {
-    padding: 3rem 4%;
-}
-
-h2 {
-    margin-bottom: 1.5rem;
-    font-size: 1.5rem;
-}
-
-.movie-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 15px;
-}
-
-.movie-card {
-    position: relative;
-    border-radius: 4px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-    box-shadow: var(--card-shadow);
-}
-
-.movie-card:hover {
-    transform: scale(1.05);
-    z-index: 2;
-}
-
-.movie-card img {
-    width: 100%;
-    aspect-ratio: 2/3;
-    object-fit: cover;
-    display: block;
-}
-
-.card-info {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-    padding: 15px 10px;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.movie-card:hover .card-info {
-    opacity: 1;
-}
-
-.card-info h3 {
-    font-size: 0.9rem;
-    margin-bottom: 5px;
-}
-
-.card-info .rating {
-    font-size: 0.8rem;
-    color: #46d369;
-}
-
-/* Modal */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.85);
-    z-index: 2000;
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
-    background-color: #181818;
-    width: 90%;
-    max-width: 850px;
-    border-radius: 8px;
-    position: relative;
-    overflow: hidden;
-}
-
-.close-btn {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    font-size: 2rem;
-    cursor: pointer;
-    color: white;
-    z-index: 10;
-}
-
-.modal-body {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.modal-body img {
-    width: 40%;
-    max-height: 500px;
-    object-fit: cover;
-}
-
-.modal-info {
-    width: 60%;
-    padding: 40px;
-}
-
-.modal-info h2 {
-    font-size: 2.2rem;
-    margin-bottom: 15px;
-}
-
-.meta {
-    margin-bottom: 20px;
-    display: flex;
-    gap: 15px;
-    color: var(--text-secondary);
-}
-
-.meta #modal-rating {
-    color: #46d369;
-    font-weight: bold;
-}
-
-#modal-overview {
-    color: var(--text-secondary);
-    margin-bottom: 30px;
+    color: var(--secondary-color);
     line-height: 1.6;
 }
 
-.modal-play {
-    padding: 12px 30px;
-    background-color: var(--accent);
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-weight: bold;
-    cursor: pointer;
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
 }
 
-@media (max-width: 768px) {
-    .modal-body img { width: 100%; height: 300px; }
-    .modal-info { width: 100%; padding: 20px; }
-    .hero-content h1 { font-size: 2.2rem; }
+header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+}
+
+header h1 i {
+    color: var(--primary-color);
+}
+
+header p {
+    color: #7f8c8d;
+}
+
+.generator-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+#generate-btn {
+    background: var(--secondary-color);
+    color: var(--white);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#generate-btn:hover {
+    background: #34495e;
+    transform: translateY(-2px);
+}
+
+#generate-btn:active {
+    transform: translateY(0);
+}
+
+.numbers-container {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    min-height: 80px;
+    align-items: center;
+    margin-bottom: 2rem;
+    background: #f9f9f9;
+    padding: 2rem;
+    border-radius: 15px;
+}
+
+.placeholder {
+    color: #bdc3c7;
+    font-style: italic;
+}
+
+.ball {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes popIn {
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* 로또 번호별 색상 */
+.ball-1-10 { background: #fbc400; }
+.ball-11-20 { background: #69c8f2; }
+.ball-21-30 { background: #ff7272; }
+.ball-31-40 { background: #aaa; }
+.ball-41-45 { background: #b0d840; }
+
+.history-section {
+    border-top: 1px solid #eee;
+    padding-top: 1.5rem;
+}
+
+.history-section h3 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: #95a5a6;
+}
+
+#history-list {
+    list-style: none;
+}
+
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid #f9f9f9;
+    font-size: 0.9rem;
+}
+
+.history-nums {
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+.info-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.info-box {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.info-box i {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+footer {
+    text-align: center;
+    margin-top: 3rem;
+    font-size: 0.8rem;
+    color: #95a5a6;
+}
+
+@media (max-width: 600px) {
+    .numbers-container {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    .ball {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+    }
+    .info-section {
+        grid-template-columns: 1fr;
+    }
 }

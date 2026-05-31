@@ -1,127 +1,71 @@
-import { mockData } from './data.js';
-
-class KDramovieApp {
+class LottoGenerator {
     constructor() {
-        this.currentCategory = 'trending';
-        this.searchQuery = '';
+        this.generateBtn = document.getElementById('generate-btn');
+        this.display = document.getElementById('numbers-display');
+        this.historyList = document.getElementById('history-list');
+        this.history = [];
+        
         this.init();
     }
 
     init() {
-        this.cacheDOM();
-        this.bindEvents();
-        this.render();
+        this.generateBtn.addEventListener('click', () => this.generateNumbers());
     }
 
-    cacheDOM() {
-        this.movieGrid = document.getElementById('movie-grid');
-        this.searchInput = document.getElementById('search-input');
-        this.navItems = document.querySelectorAll('nav ul li');
-        this.modal = document.getElementById('details-modal');
-        this.closeBtn = document.querySelector('.close-btn');
-        this.header = document.querySelector('header');
-        this.sectionTitle = document.getElementById('section-title');
-    }
-
-    bindEvents() {
-        // Scroll header effect
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                this.header.classList.add('scrolled');
-            } else {
-                this.header.classList.remove('scrolled');
-            }
-        });
-
-        // Search functionality
-        this.searchInput.addEventListener('input', (e) => {
-            this.searchQuery = e.target.value.toLowerCase();
-            this.render();
-        });
-
-        // Navigation
-        this.navItems.forEach(item => {
-            item.addEventListener('click', () => {
-                this.navItems.forEach(i => i.classList.remove('active'));
-                item.classList.add('active');
-                this.currentCategory = item.dataset.category;
-                this.sectionTitle.textContent = item.textContent;
-                this.render();
-            });
-        });
-
-        // Modal close
-        this.closeBtn.addEventListener('click', () => this.closeModal());
-        window.addEventListener('click', (e) => {
-            if (e.target === this.modal) this.closeModal();
-        });
-    }
-
-    getFilteredData() {
-        let data = [...mockData];
-
-        if (this.currentCategory !== 'trending') {
-            data = data.filter(item => item.type === this.currentCategory);
+    generateNumbers() {
+        this.display.innerHTML = '';
+        const numbers = new Set();
+        
+        while(numbers.size < 6) {
+            numbers.add(Math.floor(Math.random() * 45) + 1);
         }
 
-        if (this.searchQuery) {
-            data = data.filter(item => 
-                item.title.toLowerCase().includes(this.searchQuery) ||
-                item.overview.toLowerCase().includes(this.searchQuery)
-            );
-        }
-
-        return data;
-    }
-
-    render() {
-        const data = this.getFilteredData();
-        this.movieGrid.innerHTML = '';
-
-        if (data.length === 0) {
-            this.movieGrid.innerHTML = '<p class="no-results">No titles found matching your search.</p>';
-            return;
-        }
-
-        data.forEach(item => {
-            const card = this.createMovieCard(item);
-            this.movieGrid.appendChild(card);
+        const sortedNumbers = Array.from(numbers).sort((a, b) => a - b);
+        
+        sortedNumbers.forEach((num, index) => {
+            setTimeout(() => {
+                this.createBall(num);
+            }, index * 150);
         });
+
+        this.addToHistory(sortedNumbers);
     }
 
-    createMovieCard(item) {
-        const div = document.createElement('div');
-        div.className = 'movie-card';
-        div.innerHTML = `
-            <img src="${item.poster}" alt="${item.title}" loading="lazy">
-            <div class="card-info">
-                <h3>${item.title}</h3>
-                <span class="rating"><i class="fas fa-star"></i> ${item.rating}</span>
-            </div>
-        `;
-        div.addEventListener('click', () => this.openModal(item));
-        return div;
+    createBall(num) {
+        const ball = document.createElement('div');
+        ball.className = `ball ${this.getBallColorClass(num)}`;
+        ball.textContent = num;
+        this.display.appendChild(ball);
     }
 
-    openModal(item) {
-        document.getElementById('modal-poster').src = item.poster;
-        document.getElementById('modal-title').textContent = item.title;
-        document.getElementById('modal-rating').innerHTML = `<i class="fas fa-star"></i> ${item.rating}`;
-        document.getElementById('modal-date').textContent = item.date;
-        document.getElementById('modal-type').textContent = item.type === 'tv' ? 'TV Show' : 'Movie';
-        document.getElementById('modal-overview').textContent = item.overview;
-
-        this.modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden'; // Prevent scroll
+    getBallColorClass(num) {
+        if (num <= 10) return 'ball-1-10';
+        if (num <= 20) return 'ball-11-20';
+        if (num <= 30) return 'ball-21-30';
+        if (num <= 40) return 'ball-31-40';
+        return 'ball-41-45';
     }
 
-    closeModal() {
-        this.modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
+    addToHistory(nums) {
+        const time = new Date().toLocaleTimeString();
+        const item = { time, nums: nums.join(', ') };
+        this.history.unshift(item);
+        
+        if (this.history.length > 5) this.history.pop();
+        
+        this.renderHistory();
+    }
+
+    renderHistory() {
+        this.historyList.innerHTML = this.history.map(item => `
+            <li class="history-item">
+                <span class="history-time">${item.time}</span>
+                <span class="history-nums">${item.nums}</span>
+            </li>
+        `).join('');
     }
 }
 
-// Initialize the app
 document.addEventListener('DOMContentLoaded', () => {
-    new KDramovieApp();
+    new LottoGenerator();
 });

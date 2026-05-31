@@ -3,61 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>K-Dramovie | Discover K-Dramas & Movies</title>
+    <title>인생역전! 무료 로또 번호 추출기</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <div class="logo">K-Dramovie</div>
-        <nav>
-            <ul>
-                <li class="active" data-category="trending">Home</li>
-                <li data-category="tv">TV Shows</li>
-                <li data-category="movie">Movies</li>
-            </ul>
-        </nav>
-        <div class="search-container">
-            <i class="fas fa-search"></i>
-            <input type="text" id="search-input" placeholder="Search titles...">
-        </div>
-    </header>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-ticket-alt"></i> 인생역전 로또 번호</h1>
+            <p>매주 행운을 드리는 100% 무료 번호 생성 서비스</p>
+        </header>
 
-    <main>
-        <section id="hero">
-            <div class="hero-content">
-                <h1 id="featured-title">Featured Content</h1>
-                <p id="featured-desc">Discover the latest K-Dramas and Movies trending right now.</p>
-                <button id="hero-play"><i class="fas fa-play"></i> Play</button>
-            </div>
-        </section>
-
-        <section class="content-section">
-            <h2 id="section-title">Trending Now</h2>
-            <div id="movie-grid" class="movie-grid">
-                <!-- Movie cards will be injected here -->
-            </div>
-        </section>
-    </main>
-
-    <!-- Modal for details -->
-    <div id="details-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <div class="modal-body">
-                <img id="modal-poster" src="" alt="Poster">
-                <div class="modal-info">
-                    <h2 id="modal-title"></h2>
-                    <div class="meta">
-                        <span id="modal-rating"><i class="fas fa-star"></i> 8.5</span>
-                        <span id="modal-date">2024</span>
-                        <span id="modal-type">TV Show</span>
-                    </div>
-                    <p id="modal-overview"></p>
-                    <button class="modal-play"><i class="fas fa-play"></i> Watch Now</button>
+        <main>
+            <section class="generator-card">
+                <div class="card-header">
+                    <h2>오늘의 행운 번호</h2>
+                    <button id="generate-btn">번호 생성하기 <i class="fas fa-magic"></i></button>
                 </div>
-            </div>
-        </div>
+                
+                <div id="numbers-display" class="numbers-container">
+                    <div class="placeholder">버튼을 눌러 번호를 생성하세요!</div>
+                </div>
+
+                <div class="history-section">
+                    <h3>최근 생성 내역</h3>
+                    <ul id="history-list">
+                        <!-- 생성된 번호 리스트가 여기에 추가됨 -->
+                    </ul>
+                </div>
+            </section>
+
+            <section class="info-section">
+                <div class="info-box">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>통계 기반 추출</h3>
+                    <p>가상의 통계 알고리즘을 활용하여 최적의 조합을 추천합니다.</p>
+                </div>
+                <div class="info-box">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>100% 무료</h3>
+                    <p>회원가입 없이 누구나 무료로 이용 가능합니다.</p>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 인생역전 무료 로또. 본 서비스는 재미를 위한 도구이며 당첨을 보장하지 않습니다.</p>
+        </footer>
     </div>
 
     <script src="main.js" type="module"></script>
