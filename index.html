@@ -1,14 +1,65 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello World</title>
-  <link href='/style.css' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K-Dramovie | Discover K-Dramas & Movies</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-  <h1>Hello, world!</h1>
-  <button onclick="console.log('hello');">Press me</button>
-  <script defer type="text/javascript" src="/main.js"></script>
+    <header>
+        <div class="logo">K-Dramovie</div>
+        <nav>
+            <ul>
+                <li class="active" data-category="trending">Home</li>
+                <li data-category="tv">TV Shows</li>
+                <li data-category="movie">Movies</li>
+            </ul>
+        </nav>
+        <div class="search-container">
+            <i class="fas fa-search"></i>
+            <input type="text" id="search-input" placeholder="Search titles...">
+        </div>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="hero-content">
+                <h1 id="featured-title">Featured Content</h1>
+                <p id="featured-desc">Discover the latest K-Dramas and Movies trending right now.</p>
+                <button id="hero-play"><i class="fas fa-play"></i> Play</button>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2 id="section-title">Trending Now</h2>
+            <div id="movie-grid" class="movie-grid">
+                <!-- Movie cards will be injected here -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal for details -->
+    <div id="details-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <div class="modal-body">
+                <img id="modal-poster" src="" alt="Poster">
+                <div class="modal-info">
+                    <h2 id="modal-title"></h2>
+                    <div class="meta">
+                        <span id="modal-rating"><i class="fas fa-star"></i> 8.5</span>
+                        <span id="modal-date">2024</span>
+                        <span id="modal-type">TV Show</span>
+                    </div>
+                    <p id="modal-overview"></p>
+                    <button class="modal-play"><i class="fas fa-play"></i> Watch Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js" type="module"></script>
 </body>
 </html>
