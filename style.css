@@ -1,10 +1,11 @@
 :root {
-    --primary-color: #ffcc00; /* 로또 옐로우 */
-    --secondary-color: #2c3e50;
-    --accent-color: #e74c3c;
-    --bg-color: #f4f7f6;
-    --white: #ffffff;
-    --shadow: 0 10px 30px rgba(0,0,0,0.1);
+    --primary-bg: #0f172a;
+    --card-bg: #1e293b;
+    --sidebar-bg: #1e293b;
+    --accent: #fbbf24; /* Gold */
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --success: #22c55e;
 }
 
 * {
@@ -14,185 +15,268 @@
 }
 
 body {
-    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-    background-color: var(--bg-color);
-    color: var(--secondary-color);
-    line-height: 1.6;
+    font-family: 'Pretendard', sans-serif;
+    background-color: var(--primary-bg);
+    color: var(--text-main);
+    overflow: hidden;
 }
 
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem 1rem;
+.app-container {
+    display: flex;
+    height: 100vh;
 }
 
-header {
-    text-align: center;
+/* Sidebar */
+.sidebar {
+    width: 260px;
+    background: var(--sidebar-bg);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #334155;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--accent);
     margin-bottom: 3rem;
 }
 
-header h1 {
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    padding: 12px 15px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: all 0.2s;
+}
+
+nav ul li.active, nav ul li:hover {
+    background: #334155;
+    color: var(--text-main);
+}
+
+nav ul li i {
+    margin-right: 10px;
+}
+
+/* Main Content */
+.content {
+    flex: 1;
+    padding: 3rem;
+    overflow-y: auto;
+}
+
+.main-header {
+    margin-bottom: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.main-header h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.last-draw-info {
+    text-align: right;
+}
+
+.badge {
+    background: #334155;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    color: var(--accent);
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.small-balls {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.s-ball {
+    width: 28px;
+    height: 28px;
+    background: #475569;
+    border-radius: 50%;
+    font-size: 0.75rem;
+    display: grid;
+    place-items: center;
+}
+
+.bonus-ball { background: #64748b; }
+
+/* Analysis Cards */
+.analysis-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.analysis-card {
+    background: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: 24px;
+    position: relative;
+    border: 1px solid #334155;
+}
+
+.analysis-card.primary {
+    border: 1px solid var(--accent);
+    box-shadow: 0 0 30px rgba(251, 191, 36, 0.1);
+}
+
+.card-icon {
     font-size: 2.5rem;
-    color: var(--secondary-color);
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+}
+
+.analysis-card h2 {
+    font-size: 1.5rem;
     margin-bottom: 0.5rem;
 }
 
-header h1 i {
-    color: var(--primary-color);
-}
-
-header p {
-    color: #7f8c8d;
-}
-
-.generator-card {
-    background: var(--white);
-    padding: 2rem;
-    border-radius: 20px;
-    box-shadow: var(--shadow);
+.analysis-card .desc {
+    color: var(--text-muted);
     margin-bottom: 2rem;
 }
 
-.card-header {
+/* Best Pick Display */
+.best-pick-container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
-}
-
-#generate-btn {
-    background: var(--secondary-color);
-    color: var(--white);
-    border: none;
-    padding: 0.8rem 1.5rem;
-    border-radius: 12px;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-#generate-btn:hover {
-    background: #34495e;
-    transform: translateY(-2px);
-}
-
-#generate-btn:active {
-    transform: translateY(0);
-}
-
-.numbers-container {
-    display: flex;
+    gap: 15px;
     justify-content: center;
-    gap: 12px;
-    min-height: 80px;
-    align-items: center;
-    margin-bottom: 2rem;
-    background: #f9f9f9;
-    padding: 2rem;
-    border-radius: 15px;
-}
-
-.placeholder {
-    color: #bdc3c7;
-    font-style: italic;
+    margin: 2.5rem 0;
 }
 
 .ball {
-    width: 55px;
-    height: 55px;
+    width: 65px;
+    height: 65px;
     border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.3rem;
+    background: radial-gradient(circle at 30% 30%, #475569, #1e293b);
+    display: grid;
+    place-items: center;
+    font-size: 1.5rem;
     font-weight: bold;
     color: white;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
 }
 
-@keyframes popIn {
+/* Ball Colors */
+.b-1 { background: radial-gradient(circle at 30% 30%, #facc15, #854d0e); }
+.b-2 { background: radial-gradient(circle at 30% 30%, #38bdf8, #075985); }
+.b-3 { background: radial-gradient(circle at 30% 30%, #f87171, #991b1b); }
+.b-4 { background: radial-gradient(circle at 30% 30%, #94a3b8, #334155); }
+.b-5 { background: radial-gradient(circle at 30% 30%, #4ade80, #166534); }
+
+@keyframes bounceIn {
     0% { transform: scale(0); opacity: 0; }
     100% { transform: scale(1); opacity: 1; }
 }
 
-/* 로또 번호별 색상 */
-.ball-1-10 { background: #fbc400; }
-.ball-11-20 { background: #69c8f2; }
-.ball-21-30 { background: #ff7272; }
-.ball-31-40 { background: #aaa; }
-.ball-41-45 { background: #b0d840; }
-
-.history-section {
-    border-top: 1px solid #eee;
-    padding-top: 1.5rem;
-}
-
-.history-section h3 {
-    font-size: 1rem;
-    margin-bottom: 1rem;
-    color: #95a5a6;
-}
-
-#history-list {
-    list-style: none;
-}
-
-.history-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.8rem 0;
-    border-bottom: 1px solid #f9f9f9;
-    font-size: 0.9rem;
-}
-
-.history-nums {
+.glow-btn {
+    width: 100%;
+    padding: 15px;
+    background: var(--accent);
+    color: #451a03;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
     font-weight: bold;
-    color: var(--secondary-color);
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(251, 191, 36, 0.4);
 }
 
-.info-section {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+.glow-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(251, 191, 36, 0.6);
+}
+
+/* Stats Panel */
+.stats-panel {
+    display: flex;
+    flex-direction: column;
     gap: 1.5rem;
 }
 
-.info-box {
-    background: var(--white);
+.stat-card {
+    background: var(--card-bg);
     padding: 1.5rem;
-    border-radius: 15px;
-    text-align: center;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    border-radius: 16px;
+    border: 1px solid #334155;
 }
 
-.info-box i {
+.stat-card h3 {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+}
+
+.stat-bar {
+    height: 10px;
+    background: #334155;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.bar {
+    height: 100%;
+    background: var(--accent);
+    transition: width 1s ease-in-out;
+}
+
+.stat-val {
     font-size: 2rem;
-    color: var(--primary-color);
+    font-weight: bold;
+    color: var(--success);
+}
+
+.pattern-log {
+    background: #020617;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border-left: 4px solid var(--accent);
+}
+
+.pattern-log h3 {
+    font-size: 1rem;
     margin-bottom: 1rem;
 }
 
-footer {
-    text-align: center;
-    margin-top: 3rem;
-    font-size: 0.8rem;
-    color: #95a5a6;
+.pattern-log ul {
+    list-style: none;
 }
 
-@media (max-width: 600px) {
-    .numbers-container {
-        flex-wrap: wrap;
-        gap: 8px;
-    }
-    .ball {
-        width: 45px;
-        height: 45px;
-        font-size: 1.1rem;
-    }
-    .info-section {
-        grid-template-columns: 1fr;
-    }
+.pattern-log li {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pattern-log li i { color: var(--success); }
+
+.loading-shimmer {
+    font-style: italic;
+    color: var(--text-muted);
 }

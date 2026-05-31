@@ -3,53 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>인생역전! 무료 로또 번호 추출기</title>
+    <title>AI 로또 분석 센터 | 빅데이터 기반 최적 번호 추천</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1><i class="fas fa-ticket-alt"></i> 인생역전 로또 번호</h1>
-            <p>매주 행운을 드리는 100% 무료 번호 생성 서비스</p>
-        </header>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fas fa-microchip"></i>
+                <span>LottoAI</span>
+            </div>
+            <nav>
+                <ul>
+                    <li class="active"><i class="fas fa-chart-bar"></i> 분석 대시보드</li>
+                    <li><i class="fas fa-history"></i> 역대 당첨 번호</li>
+                    <li><i class="fas fa-lightbulb"></i> 패턴 가이드</li>
+                </ul>
+            </nav>
+        </aside>
 
-        <main>
-            <section class="generator-card">
-                <div class="card-header">
-                    <h2>오늘의 행운 번호</h2>
-                    <button id="generate-btn">번호 생성하기 <i class="fas fa-magic"></i></button>
+        <main class="content">
+            <header class="main-header">
+                <h1>데이터 기반 로또 번호 추출 시스템</h1>
+                <div class="last-draw-info">
+                    <span class="badge">최신 회차: 1123회</span>
+                    <div class="small-balls">
+                        <span class="s-ball">13</span>
+                        <span class="s-ball">19</span>
+                        <span class="s-ball">21</span>
+                        <span class="s-ball">24</span>
+                        <span class="s-ball">34</span>
+                        <span class="s-ball">35</span>
+                        <span class="bonus">+</span>
+                        <span class="s-ball bonus-ball">26</span>
+                    </div>
                 </div>
-                
-                <div id="numbers-display" class="numbers-container">
-                    <div class="placeholder">버튼을 눌러 번호를 생성하세요!</div>
+            </header>
+
+            <section class="analysis-grid">
+                <!-- 최고의 추천 번호 섹션 -->
+                <div class="analysis-card primary">
+                    <div class="card-icon"><i class="fas fa-crown"></i></div>
+                    <h2>1124회차 최적의 '필승' 추천 번호</h2>
+                    <p class="desc">역대 빈도수와 패턴 밸런스를 고려한 AI 통합 추천 조합입니다.</p>
+                    
+                    <div id="best-pick-display" class="best-pick-container">
+                        <!-- AI가 생성한 번호가 여기에 표시됩니다 -->
+                        <div class="loading-shimmer">분석 중...</div>
+                    </div>
+
+                    <button id="analyze-btn" class="glow-btn">
+                        <i class="fas fa-sync-alt"></i> 최적 번호 재계산
+                    </button>
                 </div>
 
-                <div class="history-section">
-                    <h3>최근 생성 내역</h3>
-                    <ul id="history-list">
-                        <!-- 생성된 번호 리스트가 여기에 추가됨 -->
-                    </ul>
+                <!-- 분석 지표 섹션 -->
+                <div class="stats-panel">
+                    <div class="stat-card">
+                        <h3>홀짝 밸런스</h3>
+                        <div class="stat-bar">
+                            <div id="even-bar" class="bar" style="width: 50%;"></div>
+                        </div>
+                        <p id="parity-text">3:3 비율 (권장)</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>총합 범위</h3>
+                        <div class="stat-val" id="sum-val">146</div>
+                        <p>100~170 구간 안착</p>
+                    </div>
                 </div>
             </section>
 
-            <section class="info-section">
-                <div class="info-box">
-                    <i class="fas fa-chart-line"></i>
-                    <h3>통계 기반 추출</h3>
-                    <p>가상의 통계 알고리즘을 활용하여 최적의 조합을 추천합니다.</p>
-                </div>
-                <div class="info-box">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>100% 무료</h3>
-                    <p>회원가입 없이 누구나 무료로 이용 가능합니다.</p>
-                </div>
+            <section class="pattern-log">
+                <h3>AI 분석 로그</h3>
+                <ul id="analysis-log">
+                    <li><i class="fas fa-check-circle"></i> 1123회차 당첨 번호 반영 완료</li>
+                    <li><i class="fas fa-check-circle"></i> 최근 3회차 빈출 번호(Hot) 가중치 부여</li>
+                    <li><i class="fas fa-check-circle"></i> 고저 밸런스(Low-High) 3:3 튜닝 적용</li>
+                </ul>
             </section>
         </main>
-
-        <footer>
-            <p>&copy; 2024 인생역전 무료 로또. 본 서비스는 재미를 위한 도구이며 당첨을 보장하지 않습니다.</p>
-        </footer>
     </div>
 
     <script src="main.js" type="module"></script>
